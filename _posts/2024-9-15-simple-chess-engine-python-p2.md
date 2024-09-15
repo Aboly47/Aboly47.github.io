@@ -1,15 +1,15 @@
-# Writing a simple chess engine in python - Part 2
+# Writing a simple chess engine in Python - Part 2
 
 In the [last post](https://aboly47.github.io/2024/09/15/simple-chess-engine-python-p1.html), we set up our workspace. In this part, we want to start to write some code.
 
-## what do we need to write?
+## What do we need to write?
 
-So, what do we need to write to have a software that plays chess?
+So, what do we need to write to have software that plays chess?
 
 A chess engine is divided into a few parts:
 
-* A board representation function. this keeps track of the board, the moves, the rules, and everything else related to the chess board. We will be using `python-chess` for this, but I might write one from scratch later. (If you're intrested in writing one, search for chess board representation using bitboards.)
-* A search function. This part maps out all of the moves possible from this position until a certein **depth**.
+* A board representation function. this keeps track of the board, the moves, the rules, and everything else related to the chess board. We will be using `python-chess` for this, but I might write one from scratch later. (If you're interested in writing one, search for chess board representation using bitboards.)
+* A search function. This part maps out all of the moves possible from this position until a certain **depth**.
 * An evaluation function. This part looks at a position and tells you how good is it for each player. for example, stockfish saying a position is **+2.5** means it's better for white. this is in pawn units, which we'll discuss later.
 * A time management algorithm, that tells us how much time we should spend on this move, depending on how complex and critical the position is.
 * A UCI interface, which will let our engine communicate with chess GUIs like Pychess or cutechess.
@@ -28,7 +28,7 @@ a simple approach would be this:
 
 `p: 1, n: 3, b: 3, r: 5, q: 9, k: 0`
 
-in this system, we set Pawn to one. this is a pawn unit. King is set to zero, because we can't capture the king.
+in this system, we set Pawn to one. this is a pawn unit. King is set to zero because we can't capture the king.
 
 Now, while this system is okay for human evaluations, it's not so good for computers. why? because a knight is worth slightly less than a bishop, cause a bishop sees lots of squares. this is true for open positions, in closed positions, a knight is worth more because it can jump around and create complications. but, for the sake of simplicity, this is true for all positions, for now.
 
@@ -38,15 +38,15 @@ so, a better approach would be something like this:
 
 it kinda looks like we multiplied everything by 100 and then played around with the values (except for the king value), and that's exactly what happened.
 
-this is called the ***centipawn unit(?)***.
+this is called the ***centipawn unit***.
 
-A pawn is worth 100 centipawns, A knight is worth 280 centipawns and so on.
+A pawn is worth 100 centipawns, A knight is worth 280 centipawns, and so on.
 
 These values have been found by people and computers experimenting and tuning their values.
 
 But why is the king worth 60000? Well, that's because we're writing a *king capture* engine.
 
-Think about it, putting a king in check is like attacking any other piece. but the difference is, you can let a piece die, but you can't let your king die, so you move your king. but, what if every move was also check and you didn't have a *legal* move? (a legal move is a move that doesn't put your own king in check.) well, then you'd have to let your king die. you could play any move, and your king would be captured on the next turn. so, our ultimate goal is to capture the king. so, the king must have a value, right? but why such a big number? the number needs to be bigger than *8p + 2n + 2b + 2r + 1q*, hence the 60000.
+Think about it, putting a king in check is like attacking any other piece. but the difference is, that you can let a piece die, but you can't let your king die, so you move your king. but, what if every move was also check and you didn't have a *legal* move? (a legal move is a move that doesn't put your own king in check.) well, then you'd have to let your king die. you could play any move, and your king would be captured on the next turn. so, our ultimate goal is to capture the king. so, the king must have a value, right? but why such a big number? the number needs to be bigger than *8p + 2n + 2b + 2r + 1q*, hence the 60000.
 
 ## Let's write some code, shall we?
 
@@ -84,7 +84,7 @@ def evaluate_material(board):
 
 # Example usage
 if __name__ == "__main__":
-    # Create a chess board
+    # Create a chessboard
     board = chess.Board()
 
     # Evaluate the material balance
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     print("Material score:", score)
 ```
 
-***Note:*** I will be assuming you know how to write python code. so, I will assume you know what `def something()` does, or what `print()` does, so on. if you don't know what something does, search on Google or write a comment below and I'll answer.
+***Note:*** I will be assuming you know how to write Python code. so, I will assume you know what `def something()` does, or what `print()` does, so on. if you don't know what something does, search on Google or write a comment below and I'll answer.
 
 this code is pretty self explanatory. we define a dictionary containing the value for each piece, then get the piece on the board for white and black, multiply them by the values, sum them up for each color, and subtract them. this will give you a number for each position.
 
@@ -102,9 +102,9 @@ in this line:
 board = chess.Board()
 ```
 
-`Board()` takes an argument `fen=`. so, you can pass the fen of any position in there to *evaluate* it. by default it has the starting position fen, which is `rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1`.
+`Board()` takes an argument `fen=`. so, you can pass the fen of any position in there to *evaluate* it. by default, it has the starting position fen, which is `rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1`.
 
-for example, `rnbqkbnr/ppp1pppp/8/3P4/8/8/PPPP1PPP/RNBQKBNR b KQkq - 0 2` is a position where white is a pawn up. it's the scandinavian defense (I probably spelled that wrong.). we can evaluate it by changing:
+for example, `rnbqkbnr/ppp1pppp/8/3P4/8/8/PPPP1PPP/RNBQKBNR b KQkq - 0 2` is a position where white is a pawn up. it's the Scandinavian defense. we can evaluate it by changing:
 
 ```python
 board = chess.Board()
