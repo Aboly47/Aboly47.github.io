@@ -92,7 +92,7 @@ if __name__ == "__main__":
 
 ***Note:*** I will be assuming you know how to write Python code. so, I will assume you know what `def something()` does, or what `print()` does, so on. if you don't know what something does, search on Google or write a comment below and I'll answer.
 
-this code is pretty self explanatory. we define a dictionary containing the value for each piece, then get the piece on the board for white and black, multiply them by the values, sum them up for each color, and subtract them. this will give you a number for each position.
+this code is pretty self-explanatory. we define a dictionary containing the value for each piece, then get the piece on the board for white and black, multiply them by the values, sum them up for each color, and subtract them. this will give you a number for each position.
 
 in this line:
 
