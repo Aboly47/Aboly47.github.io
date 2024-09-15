@@ -1,4 +1,4 @@
-# Writing a simple chess engine in python - Part 3
+# Writing a simple chess engine in Python - Part 3
 
 In the [last post](https://aboly47.github.io/2024/09/15/simple-chess-engine-python-p2.html), we wrote a function that evaluates the chess board and gives us a number. now, we want to write a search function that searches the tree of moves, evaluates every possible move, and gives us the best move.
 
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     print("Material score:", score)
 ```
 
-we need to remove something from this. last time we were testing things and we needed an example usage. we don't need it anymore. so, delete everything after (and including) `# Example usage`. so, your code should be:
+we need to remove something from this. last time we were testing things and we needed an example of usage. we don't need it anymore. so, delete everything after (and including) `# Example usage`. so, your code should be:
 
 ```python
 import chess
@@ -79,7 +79,7 @@ def evaluate(board: chess.Board) -> int:
     return white_score - black_score
 ```
 
-save this in a file called `evaluation.py`. now, let's get searching! (Alright, I'll stop with the puns.)
+save this in a file called `evaluation.py`. Now, let's get searching! (Alright, I'll stop with the puns.)
 
 ## Search
 
@@ -91,11 +91,11 @@ The most popular search algorithm for chess is alpha-beta pruning and that's wha
 
 According to [Wikipedia](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning):
 
-Alpha–beta pruning is a search algorithm that seeks to decrease the number of nodes that are evaluated by the minimax algorithm in its search tree. It is an adversarial search algorithm used commonly for machine playing of two-player combinatorial games (Tic-tac-toe, Chess, Connect 4, etc.). It stops evaluating a move when at least one possibility has been found that proves the move to be worse than a previously examined move. Such moves need not be evaluated further. When applied to a standard minimax tree, it returns the same move as minimax would, but prunes away branches that cannot possibly influence the final decision.
+Alpha-beta pruning is a search algorithm that seeks to decrease the number of nodes that are evaluated by the minimax algorithm in its search tree. It is an adversarial search algorithm used commonly for machine playing of two-player combinatorial games (Tic-tac-toe, Chess, Connect 4, etc.). It stops evaluating a move when at least one possibility has been found that proves the move to be worse than a previously examined move. Such moves need not be evaluated further. When applied to a standard minimax tree, it returns the same move as minimax would, but prunes away branches that cannot possibly influence the final decision.
 
 The fuuudge?
 
-anyway, after hours of debugging and re-writing and crying, I present to you, alpha-beta search!
+anyway, after hours of debugging and re-writing and crying, I present to you, an alpha-beta search!
 
 ```python
 import chess
@@ -166,7 +166,7 @@ Great! now, try increasing it to 7 and run it. it'll take a while but it should 
 
 `Best move: g1f3`
 
-why did it take so much in depth 7? the evaluation function is so simple, it should calculate everything in no time!
+why did it take so much to calculate depth 7? The evaluation function is so simple, it should calculate everything in no time!
 
 BECAUSE PYTHON IS ***SLOW***!
 
