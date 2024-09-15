@@ -38,15 +38,13 @@ so, a better approach would be something like this:
 
 it kinda looks like we multiplied everything by 100 and then played around with the values (except for the king value), and that's exactly what happened.
 
-this is called the ***centipawn unit***.
+In chess, the value of pieces is measured in centipawns: a pawn is worth 100 centipawns, a knight 280, and so forth, established through extensive experiments by both players and computers.
 
-A pawn is worth 100 centipawns, A knight is worth 280 centipawns, and so on.
+The king, however, is assigned a value of 60,000 centipawns. This is because we're writing a **king-capture** engine. Unlike other pieces, the king must never be captured; if it is, the game ends. While you may sacrifice other pieces, losing your king results in immediate defeat.
 
-These values have been found by people and computers experimenting and tuning their values.
+Consider this scenario: if your king is in check, you can only respond by moving it to safety or blocking the check. If every move puts your king in check, and no legal moves remain, it’s checkmate. However, continuing from that state, any move you made would put your king in check, and in the next turn, your king would be captured.
 
-But why is the king worth 60000? Well, that's because we're writing a *king capture* engine.
-
-Think about it, putting a king in check is like attacking any other piece. but the difference is, that you can let a piece die, but you can't let your king die, so you move your king. but, what if every move was also check and you didn't have a *legal* move? (a legal move is a move that doesn't put your own king in check.) well, then you'd have to let your king die. you could play any move, and your king would be captured on the next turn. so, our ultimate goal is to capture the king. so, the king must have a value, right? but why such a big number? the number needs to be bigger than *8p + 2n + 2b + 2r + 1q*, hence the 60000.
+Thus, we assign the king a value exceeding the combined worth of multiple pieces—specifically more than 8 pawns, 2 knights, 2 bishops, 2 rooks, and 1 queen—hence 60,000 centipawns.
 
 ## Let's write some code, shall we?
 
