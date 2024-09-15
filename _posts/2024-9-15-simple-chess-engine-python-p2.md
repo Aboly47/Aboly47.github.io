@@ -55,7 +55,7 @@ I will be using python-chess for this.
 ```python
 import chess
 
-def evaluate_material(board):
+def evaluate(board: chess.Board) -> int:
     # Define the material values for each piece
     piece_values = {
         chess.PAWN: 100,
