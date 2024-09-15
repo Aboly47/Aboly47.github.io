@@ -6,16 +6,16 @@ Well, I'm here to teach you how to do exactly that, in Python!
 
 ## Important: Expectations
 
-So, don't come into this thinking you'll write the next stockfish or LC0. we're going to be writing a very basic chess engine in Python. I'm calling it basic, but we will explore different evaluation functions, different search methods and tricks and optomizations, and even at some point, Neural Networks, and NNUE too. but, the chess engine we will make will still probably be bad. by bad I mean it will be slow, and it will make blunders. Why? because python is slow. if you write the same code we will explore in part 2, but in c++, you will get around 12-15 depth in a reasonable time (at least that's what I got when I wrote it myself). but, in python, we hardly get 6. which is laughable for a chess engine, but it's because python is an interpreted programming language and it's slower than something like c++. this tutorial isn't trying to teach you how to write a superhuman chess engine. for that, your best bet is to choose something like c++, or even Rust. there are currently very strong chess engines being developed in Rust that you can find with a quick search. then, you probably should take a look at other engines' source codes and take notes. Be careful to not **steal** code though. stealing other people's code is frowned upon heavily in the chess engine community.
+So, don't come into this thinking you'll write the next stockfish or LC0. we're going to be writing a very basic chess engine in Python. I'm calling it basic, but we will explore different evaluation functions, different search methods and tricks and optimizations, and even at some point, Neural Networks, and NNUE too. but, the chess engine we will make will still probably be bad. by bad I mean it will be slow, and it will make blunders. Why? because Python is slow. if you write the same code we will explore in part 3, but in C++, you will get around 12-15 depth in a reasonable time (at least that's what I got when I wrote it myself). but, in Python, we hardly get 6. which is laughable for a chess engine, but it's because Python is an interpreted programming language and it's slower than something like C++. This tutorial isn't trying to teach you how to write a superhuman chess engine. for that, your best bet is to choose something like C++, or even Rust. there are currently very strong chess engines being developed in Rust that you can find with a quick search. then, you probably should take a look at other engines' source codes and take notes. Be careful to not **steal** code though. stealing other people's code is frowned upon heavily in the chess engine community.
 
-## so what is this?
-a tutorial for you to get your hands down and dirty on chess engine developement. you can get a sense of how things work and then continue from there. 😃
+## So what is this?
+a tutorial for you to get your hands down and dirty on chess engine development. you can get a sense of how things work and then continue from there. 😃
 
 ## workspace
 
 you'll need a few things installed for the next part to work, so do it right now.
 
-create a directory for your project and cd into it. (execute these line by line, change `PROJECT_NAME` to suit the path where you want to create the project.)
+create a directory for your project and cd into it. (execute these line by line, and change `PROJECT_NAME` to suit the path where you want to create the project.)
 
 ```bash
 mkdir PROJECT_NAME
@@ -26,9 +26,9 @@ create a virtual environment (optional, but recommended.)
 (the lines that start with # are comments, you don't need to execute them.)
 
 ```bash
-# if you're using windows
+# If you're using windows
 python -m venv venv
-# if you're using linux
+# If you're using linux
 python3 -m venv venv
 ```
 
@@ -44,15 +44,15 @@ source ./venv/bin/activate
 install the required package
 
 ```bash
-# python chess is a python librar used to work with chess stuff.
+# python chess is a python library used to work with chess stuff.
 pip install python-chess
 ```
 
-if eveything goes well, you should have `python-chess` installed. if you encounter any errors, search on Google or post them on the comment section below and I'll respond.
+if everything goes well, you should have `python-chess` installed. if you encounter any errors, search on Google or post them on the comment section below and I'll respond.
 
 # Note
 
-if you're on linux and you don't use a virtual environment, you might get this error:
+if you're on Linux and you don't use a virtual environment, you might get this error:
 
 ```plaintext
 error: externally-managed-environment
