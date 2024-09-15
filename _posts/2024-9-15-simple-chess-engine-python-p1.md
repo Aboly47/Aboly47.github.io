@@ -1,15 +1,15 @@
-# Writing a simple chess engine in python - Part 1
+# Writing a simple chess engine in Python - Part 1
 
 So, you probably know about Stockfish, and LC0, torch, komodo, and other chess engines. but, have you ever thought about writing one?
 
-Well, I'm here to teach you how to do exactly that, in python!
+Well, I'm here to teach you how to do exactly that, in Python!
 
 ## Important: Expectations
 
-So, don't come into this thinking you'll write the next stockfish or LC0. we're going to be writing a very basic chess engine in python. I'm calling it basic, but we will explroe different evaluation functions, different search methods and tricks and optomizations, and even at some point, Neural Networks, and NNUE too. but, the chess engine we will make will still probably be bad. by bad I mean it will be slow, and it will make blunders. Why? because python is slow. if you write the same code we will explore in part 2, but in c++, you will get around 12-15 depth in a reasonable time (at least that's what I got when I wrote it myself). but, in python, we hardly get 6. which is laughable for a chess engine, but it's because python is an interpreted programming language and it's slower than something like c++. this tutorial isn't trying to teach you how to write a superhuman chess engine. for that, your best bet is to choose something like c++, or even Rust. there are currently very strong chess engines being developed in Rust that you can find with a quick search. then, you probably should take a look at other engines' source codes and take notes. Be careful to not **steal** code though. stealing other people's code is frowned upon heavily in the chess engine community.
+So, don't come into this thinking you'll write the next stockfish or LC0. we're going to be writing a very basic chess engine in Python. I'm calling it basic, but we will explore different evaluation functions, different search methods and tricks and optomizations, and even at some point, Neural Networks, and NNUE too. but, the chess engine we will make will still probably be bad. by bad I mean it will be slow, and it will make blunders. Why? because python is slow. if you write the same code we will explore in part 2, but in c++, you will get around 12-15 depth in a reasonable time (at least that's what I got when I wrote it myself). but, in python, we hardly get 6. which is laughable for a chess engine, but it's because python is an interpreted programming language and it's slower than something like c++. this tutorial isn't trying to teach you how to write a superhuman chess engine. for that, your best bet is to choose something like c++, or even Rust. there are currently very strong chess engines being developed in Rust that you can find with a quick search. then, you probably should take a look at other engines' source codes and take notes. Be careful to not **steal** code though. stealing other people's code is frowned upon heavily in the chess engine community.
 
 ## so what is this?
-a tutorial for you to get your hands down and dirty on chess engine developement. you can get a sense of how things work and then continue from there. :smiley:
+a tutorial for you to get your hands down and dirty on chess engine developement. you can get a sense of how things work and then continue from there. 😃
 
 ## workspace
 
@@ -77,4 +77,4 @@ note: If you believe this is a mistake, please contact your Python installation 
 hint: See PEP 668 for the detailed specification.
 ```
 
-this just means you need to use a virtual environment. the only way around it is using pipx, which, well, I don't use or recommend.
+this just means you need to use a virtual environment. The only way around it is using pipx, which, well, I don't use or recommend.
